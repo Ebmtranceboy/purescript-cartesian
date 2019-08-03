@@ -1,7 +1,7 @@
 module Data.Complex (module Data.Complex) where
 
 import Prelude
-import Data.Int(toNumber, round) as Int
+import Data.Int(toNumber, round,ceil) as Int
 import Math(sqrt, cos, sin, atan2)
 import Math(pow) as Math
 
@@ -55,13 +55,13 @@ instance commutativeRingCartesian :: CommutativeRing a => CommutativeRing (Carte
 instance divisionRingCartesian :: DivisionRing a => DivisionRing (Cartesian a) where
   recip z = map (_ * (recip $ magnitudeSquared z)) (conjugate z)
 
-instance euclideanRingCartesianNmber :: EuclideanRing (Cartesian Number) where
-  degree _ = 1
+instance euclideanRingCartesianNumber :: EuclideanRing (Cartesian Number) where
+  degree = Int.ceil <<< magnitudeSquared
   div z z' = z * (recip z')
   mod z z' = zero
 
 instance euclideanRingCartesianInt :: EuclideanRing (Cartesian Int) where
-  degree _ = 1
+  degree = magnitudeSquared
   div z z' = map Int.round $ div (map Int.toNumber z) (map Int.toNumber z')
   mod z z' = sub z $ mul z' $ div z z' 
 
