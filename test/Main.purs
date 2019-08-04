@@ -4,6 +4,8 @@ import Prelude (Unit, discard, gcd, mod, negate, one, show, ($), (&&), (*), (+),
 import Effect (Effect)
 import Data.Complex
 
+foreign import assert :: String -> Boolean -> Effect Unit
+
 z1 :: Cartesian Int
 z1 = Cartesian 1 2
 
@@ -15,8 +17,6 @@ z3 = Cartesian 8.0 1.0
 
 z4 :: Cartesian Int
 z4 = Cartesian 5 (-4)
-
-foreign import assert :: String -> Boolean -> Effect Unit
 
 main :: Effect Unit
 main = do
@@ -37,4 +37,5 @@ main = do
   assert "Gauss integers" $ z1' * g == z1 
                          && z4' * g == z4
                          && magnitudeSquared m < magnitudeSquared z4
-  assert "Complex power" $ magnitudeSquared (pow (Cartesian 1.0 1.0) 2.0 - ((_*2.0) <$>i)) < 1e-6 
+  assert "Complex power" $ 
+    magnitudeSquared (pow (Cartesian 1.0 1.0) 2.0 - ((_*2.0) <$>i)) < 1e-6 
