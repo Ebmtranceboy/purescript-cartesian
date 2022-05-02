@@ -2,8 +2,8 @@ module Data.Complex (module Data.Complex) where
 
 import Prelude
 import Data.Int(toNumber, round,ceil) as Int
-import Math(sqrt, cos, sin, atan2)
-import Math(pow) as Math
+import Data.Number(sqrt, cos, sin, atan2)
+import Data.Number(pow) as Math
 
 -- | Complex number defined by its real and imaginary parts
 -- | ```
