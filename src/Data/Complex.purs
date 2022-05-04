@@ -94,7 +94,7 @@ instance divisionRingCartesian :: DivisionRing a => DivisionRing (Cartesian a) w
 instance euclideanRingCartesianNumber :: EuclideanRing (Cartesian Number) where
   degree = Int.ceil <<< magnitudeSquared
   div z z' = z * (recip z')
-  mod z z' = zero
+  mod _ _ = zero
 
 instance euclideanRingCartesianInt :: EuclideanRing (Cartesian Int) where
   degree = magnitudeSquared
